@@ -6,7 +6,7 @@ require("dotenv").config();
 var cors = require("cors");
 
 const app = express();
-const port = process.env.PORT || 5000;
+const port = process.env.PORT || 8000;
 
 // MIDDLEWARE
 app.use(cors());
@@ -52,7 +52,7 @@ async function run() {
       res.json(result);
     });
 
-    // UPDATE SINGLE SERVICE
+    /* // UPDATE SINGLE SERVICE
     app.put("/services/:id", async (req, res) => {
       const id = req.params.id;
       console.log("update Single service hitted", req.body);
@@ -64,7 +64,7 @@ async function run() {
       const result = await services.updateOne(filter, updateDoc);
       res.json(result);
     });
-
+ */
     // DELETE SINGLE SERVICE
     app.delete("/services/:id", async (req, res) => {
       const id = req.params.id;
