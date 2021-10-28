@@ -6,7 +6,7 @@ require("dotenv").config();
 var cors = require("cors");
 
 const app = express();
-const port = 5000;
+const port = process.env.PORT || 5000;
 
 // MIDDLEWARE
 app.use(cors());
@@ -49,6 +49,19 @@ async function run() {
     app.post("/services", async (req, res) => {
       const service = req.body;
       const result = await servicesCollection.insertOne(service);
+      res.json(result);
+    });
+
+    // UPDATE SINGLE SERVICE
+    app.put("/services/:id", async (req, res) => {
+      const id = req.params.id;
+      console.log("update Single service hitted", req.body);
+      console.log("getting specific service");
+      const filter = { _id: ObjectId(id) };
+      const updateDoc = {
+        $set: {},
+      };
+      const result = await services.updateOne(filter, updateDoc);
       res.json(result);
     });
 
